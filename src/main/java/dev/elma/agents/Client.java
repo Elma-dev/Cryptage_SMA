@@ -21,14 +21,14 @@ public class Client extends Agent {
 
         try {
             //generate secret Key to using with aes
-            SecretKey secretKey=new SecretKeySpec(secretKeyString.getBytes(StandardCharsets.UTF_8),"AES");
+            SecretKey secretKey=new SecretKeySpec(secretKeyString.getBytes(),"AES");
             //create cipher object for crypt and decrypt
             Cipher cipher=Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE,secretKey);
             //crypt message
             byte[] cryptMessage = cipher.doFinal("Hello Server Are you Here?".getBytes());
             //byte to string encoded
-            String cryptMessageStr = Base64.getEncoder().encode(cryptMessage).toString();
+            String cryptMessageStr = Base64.getEncoder().encodeToString(cryptMessage);
             //send message to srv:
             ACLMessage message=new ACLMessage(ACLMessage.INFORM);
             message.addReceiver(new AID("server",AID.ISLOCALNAME));

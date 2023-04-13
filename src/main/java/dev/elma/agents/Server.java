@@ -8,26 +8,31 @@ import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 public class Server extends Agent {
     @Override
     protected void setup() {
         String secretKeyString=(String) getArguments()[0];
 
-        SecretKey secretKeyAES=new SecretKeySpec(secretKeyString.getBytes(StandardCharsets.UTF_8),"AES");
+        SecretKey secretKeyAES=new SecretKeySpec(secretKeyString.getBytes(),"AES");
         addBehaviour(new CyclicBehaviour() {
             @Override
             public void action() {
                 ACLMessage receiveMessage = receive();
                 if(receiveMessage!=null){
                     String content = receiveMessage.getContent();
+                    //decoded Messsage
+                    byte[] decode = Base64.getDecoder().decode(content);
                     try {
                         Cipher cipher=Cipher.getInstance("AES");
                         cipher.init(Cipher.DECRYPT_MODE,secretKeyAES);
-                        String decryptedMsg = cipher.doFinal(content.getBytes()).toString();
-                        System.out.println(decryptedMsg);
+                        //decrypted message
+                        byte[] bytes = cipher.doFinal(decode);
+                        System.out.println(new String(bytes));
 
                     } catch (Exception e) {
                         e.printStackTrace();
