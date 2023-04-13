@@ -15,9 +15,12 @@ public class ClientContainer {
         ProfileImpl profile=new ProfileImpl();
         profile.setParameter(Profile.MAIN_HOST,"localhost");
         AgentContainer agentContainer = instance.createAgentContainer(profile);
-        String privateKey=new Scanner(new File("RSAKeys")).nextLine();
-        System.out.println(privateKey);
-        AgentController newAgent = agentContainer.createNewAgent("client","dev.elma.agents.Client",new Object[]{privateKey});
+
+        Scanner scanner = new Scanner(new File("RSAKeys"));
+        scanner.nextLine();
+        String publicKey=scanner.nextLine();
+
+        AgentController newAgent = agentContainer.createNewAgent("client","dev.elma.agentsRSA.Client",new Object[]{publicKey});
         newAgent.start();
 
     }
