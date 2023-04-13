@@ -1,4 +1,4 @@
-package dev.elma.containers;
+package dev.elma.containers.rsa;
 
 import jade.core.Profile;
 import jade.core.ProfileImpl;
