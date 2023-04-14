@@ -16,7 +16,8 @@ To understand this we must know that when AES encrypts, if applies the same algo
 We only need to reverse the encryption procedure to decrypt a text.
 
 ### How To Apply it in SMA with Java?
-firstly we should generate a secrete key and share it with all agents, in my case i put it in this file   
+1. firstly we should generate a secrete key and share it with all agents, in my case i put it in this file [AES.txt](https://github.com/Elma-dev/Cryptage_SMA/blob/master/AES.txt).
+2. in the agent who will encrypt the message we need to transform the key to be able of using with AES algorithm
 
 
 
