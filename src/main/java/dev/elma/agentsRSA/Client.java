@@ -31,6 +31,7 @@ public class Client extends Agent {
             byte[] cryptMessage = cipher.doFinal("Hello Server Are you Here?".getBytes());
             //byte to string encoded
             String cryptMessageStr = Base64.getEncoder().encodeToString(cryptMessage);
+            System.out.println(cryptMessageStr);
             //send message to srv:
             ACLMessage message=new ACLMessage(ACLMessage.INFORM);
             message.addReceiver(new AID("server",AID.ISLOCALNAME));
