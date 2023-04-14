@@ -15,6 +15,9 @@ To understand this we must know that when AES encrypts, if applies the same algo
 
 We only need to reverse the encryption procedure to decrypt a text.
 
+### How To Apply it in SMA with Java?
+firstly we should generate a secrete key and share it with all agents, in my case i put it in this file   
+
 
 
 
